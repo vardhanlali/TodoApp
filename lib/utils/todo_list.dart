@@ -26,18 +26,18 @@ class TodoList extends StatelessWidget {
       ),
       child: Slidable(
         endActionPane: ActionPane(
-            motion: StretchMotion(),
-            children: [
-              SlidableAction(
-                onPressed: (context) {
-                  if (deleteFunction != null) {
-                    deleteFunction!(context);
-                  }
-                },
-                icon: Icons.delete,
-                borderRadius: BorderRadius.circular(15),
-                backgroundColor: Colors.red,
-              ),
+          motion: const StretchMotion(),
+          children: [
+            SlidableAction(
+              onPressed: (context) {
+                if (deleteFunction != null) {
+                  deleteFunction!(context);
+                }
+              },
+              icon: Icons.delete,
+              borderRadius: BorderRadius.circular(15),
+              backgroundColor: Colors.red,
+            ),
           ],
         ),
         child: Container(
@@ -49,23 +49,28 @@ class TodoList extends StatelessWidget {
           child: Row(
             children: [
               Checkbox(
-                  value: taskCompleted,
-                  onChanged: onChanged,
-                  checkColor: Colors.black,
-                  activeColor: Colors.white,
-                  side: const BorderSide(
-                    color: Colors.white,
-                  ),
-              ),
-              Text(
-                taskName, // Using the passed task name
-                style:  TextStyle(
+                value: taskCompleted,
+                onChanged: onChanged,
+                checkColor: Colors.black,
+                activeColor: Colors.white,
+                side: const BorderSide(
                   color: Colors.white,
-                  fontSize: 18,
-                  decoration: taskCompleted
-                      ? TextDecoration.lineThrough
-                      : TextDecoration.none,
-                  decorationThickness: 3,
+                ),
+              ),
+              // ✅ Fix: Wrap text inside Flexible to prevent overflow
+              Flexible(
+                child: Text(
+                  taskName, // Using the passed task name
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                    overflow: TextOverflow.ellipsis, // ✅ Adds "..." for long text
+                    decoration: taskCompleted
+                        ? TextDecoration.lineThrough
+                        : TextDecoration.none,
+                    decorationThickness: 3,
+                  ),
+                  softWrap: true, // ✅ Ensures wrapping if space allows
                 ),
               ),
             ],
