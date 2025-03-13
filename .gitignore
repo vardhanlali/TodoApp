@@ -11,6 +11,7 @@
 .svn/
 .swiftpm/
 migrate_working_dir/
+*.arb  
 
 # IntelliJ related
 *.iml
@@ -21,7 +22,9 @@ migrate_working_dir/
 # The .vscode folder contains launch configuration and tasks you configure in
 # VS Code which you may wish to be included in version control, so this line
 # is commented out by default.
-#.vscode/
+# .vscode/  
+#   Keep this commented out unless you have a specific reason to ignore .vscode.
+#   It's often useful to share launch configurations and tasks.
 
 # Flutter/Dart/Pub related
 **/doc/api/
@@ -32,6 +35,14 @@ migrate_working_dir/
 .pub-cache/
 .pub/
 /build/
+**/ios/Pods # Added: Ignore CocoaPods dependencies (iOS)
+**/ios/.symlinks # Added: Ignore symlinks (iOS)
+**/ios/Runner.xcodeproj/project.xcworkspace/ # Added: Ignore Xcode workspace settings (iOS)
+**/android/.gradle # Added: Ignore Gradle files (Android)
+**/android/build # Added: Ignore Android build output
+**/android/.idea/caches # Added: Ignore Android Studio caches
+**/android/.idea/local.properties # Added: Ignore local properties (Android)
+**/web/build # Added: Ignore web build output
 
 # Symbolication related
 app.*.symbols
@@ -43,3 +54,10 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Node.js
+/node_modules  # Very Important! You have it in the original instructions, but it's crucial.
+package-lock.json  # Or yarn.lock or pnpm-lock.yaml, if you use them.
+
+# Environment files
+.env # Added: Ignore environment files
